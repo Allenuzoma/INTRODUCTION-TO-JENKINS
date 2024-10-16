@@ -130,7 +130,9 @@ Add a new webhook, using the Jenkins URL as the Payload URL
 
 Set Content type to application/json.
 
-  ![adding webhook](https://github.com/user-attachments/assets/4b6d16a8-0631-4f3e-9e7b-adf10f298e4f)
+  ![webhooks configured at the repo settings](https://github.com/user-attachments/assets/35df42e1-5904-4b6a-a60f-61830a29d3c4)
+
+![webhooks configured at the repo settings png contents](https://github.com/user-attachments/assets/29dc10ad-b675-4329-93a0-fa11dd33c47e)
 
 
 
@@ -145,6 +147,17 @@ can copy from the repository itself
 In configuration of your Jenkins freestyle project choose Git repository,
 provide there the link to your Tooling GitHub repository and credentials
 (user/password) so Jenkins could access files in the repository.
+
+![console output jenkins](https://github.com/user-attachments/assets/4df88a04-f55f-4d10-ae46-2e93709b58c1)
+
+
+
+
+![build status](https://github.com/user-attachments/assets/9e6ef259-181b-4947-8e88-91e1006c92df)
+
+
+
+
 
 Save the configuration and let us try to run the build. 
 For now we can only
@@ -164,6 +177,23 @@ Configure triggering the job from GitHub webhook:
 Configure "Post-build Actions" to archive all the files - files resulted from a
 build are called "artifacts".
 step1
+
+
+![build triggers](https://github.com/user-attachments/assets/de6758c9-b49a-417a-b8d5-6e9f965b2dd4)
+
+![post build actions](https://github.com/user-attachments/assets/5bf8bf38-587f-4ded-bd5f-70235d9ff976)
+
+![archive artifacts settings](https://github.com/user-attachments/assets/748b60a6-c69c-4396-abb7-e545c109b1d5)
+
+
+
+![archive artifacts settings png 2](https://github.com/user-attachments/assets/32aa5948-f897-448b-915f-c0d5e2fb76db)
+
+
+![build 2 status](https://github.com/user-attachments/assets/2f8fe6e5-679f-4c6e-afe0-3d670ac232f5)
+
+
+
 
 Step2
 
