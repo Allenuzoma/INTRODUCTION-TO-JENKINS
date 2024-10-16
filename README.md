@@ -5,28 +5,71 @@ Step 1 - Install Jenkins server
 1. Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and
   name it "Jenkins"
 
+![instance creation](https://github.com/user-attachments/assets/cc8c1d40-4a62-44a8-adb5-b6a58dd20879)
+
+
 3. Install JDK (since Jenkins is a Java-based application)
 
 
       sudo apt update
       sudo apt install default-jdk-headless
+
+![sudo apt install jdk headless](https://github.com/user-attachments/assets/6dac7c2c-bf7a-484a-8cae-899d0e94f8e8)
+
+
+   
    
 5. Install Jenkins
+Due to the fact that Jenkins requires JDK to run will will have to install it first
 
-   
-      wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo
-      apt-key add -
-      sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-      /etc/apt/sources.list.d/jenkins.list'
+
+sudo apt update
+sudo apt install fontconfig openjdk-17-jre
+java -version
+openjdk version "17.0.8" 2023-07-18
+OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+source ~/.bashrc 
+
+
+
+We can now proceed to install Jenkins
+
+      wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+      sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
       sudo apt update
-      sudo apt-get install jenkins
-      Make sure Jenkins is up and running
+      sudo apt install jenkins
+      sudo systemctl start jenkins.service
+      #Since systemctl doesn’t display status output, we’ll use the status command to verify that Jenkins started successfully:
       sudo systemctl status jenkins
 
+   
 
    
 7. By default Jenkins server uses TCP port 8080 - open it by creating a
 new Inbound Rule in your EC2 Security Group
+
+![inbound rules](https://github.com/user-attachments/assets/b3424e03-1c03-4fbe-9f1c-a9c9a516ae34)
+
+By default, Jenkins runs on port 8080. Open that port using ufw:
+
+
+    sudo ufw allow 8080
+
+Note: If the firewall is inactive, the following commands will allow OpenSSH and enable the firewall:
+
+    
+    sudo ufw allow OpenSSH
+    sudo ufw enable
+    
+
+Check ufw’s status to confirm the new rules:
+
+    sudo ufw status
+
+  ![ufw status](https://github.com/user-attachments/assets/e57e0f14-d5c0-4db9-b017-c3c6818758e1)
 
 
 9. Perform initial Jenkins setup.
@@ -34,25 +77,42 @@ new Inbound Rule in your EC2 Security Group
 From your browser access http://<Jenkins-Server-Public-IP-Address-or-Public-DNS￾Name>:8080
 You will be prompted to provide a default admin password
 
+
+![unlock jenkins](https://github.com/user-attachments/assets/9ee7d1d6-860c-426b-a831-f2ea6f3e45b0)
+
 Retrieve it from your server:
 
+
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
     
+  ![getting the jenkins admi password](https://github.com/user-attachments/assets/bebf45e8-1059-49ec-a398-b419a141b144)
+
+![after signing in](https://github.com/user-attachments/assets/1382759b-0914-427b-8b0f-b45692244e50)
+
+
 Then you will be asked which plugings to install - choose suggested plugins.
+
+![after signing in](https://github.com/user-attachments/assets/c15e2bd3-c73b-44ab-a830-5b517b9e38ac)
 
 Once plugins installation is done - create an admin user and you will get
 your Jenkins server address.
 
+![create first admin user](https://github.com/user-attachments/assets/70d048e5-bfc6-4ebf-8122-7a71ac340179)
+
+
+![instance config](https://github.com/user-attachments/assets/a7cb92be-2f7b-4d26-a620-236a41209efe)
+
 The installation is completed
 
 
-Step 2 - Confi gure Jenkins to retrieve source codes from
+Step 2 - Configure Jenkins to retrieve source codes from
 GitHub using Webhooks
 
 In this part, you will learn how to configure a simple Jenkins job/project
-(these two terms can be used interchangeably). This job will will be
+(these two terms can be used interchangeably). 
 
-triggered by GitHub webhooks and will execute a 'build' task to retrieve
+This job will will be triggered by GitHub webhooks and will execute a 'build' task to retrieve
 codes from GitHub and store it locally on Jenkins server.
 
 1. Enable webhooks in your GitHub repository settings
