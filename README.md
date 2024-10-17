@@ -264,18 +264,46 @@ define which files to send - use this syntax.
 Save this configuration and go ahead, change something in README.MD file in
 your GitHub Tooling repository.
 
+NOTE: On the NFS server, you have to create a new user for jenkins and assign appropriate ownership and permission for it to be able to access the /mnt/apps directory on NFS server.
+      #check user
+      id jenkins
+      #add user 
+      sudo useradd -u 1001 --system --shell /bin/bash --home /var/lib/jenkins jenkins
+      #grant ownership
+      sudo chown -R jenkins:jenkins /mnt/apps
+      #grant permission
+      sudo chmod -R 755 /mnt/apps
+      #verify 
+      ls -ld /mnt/apps
+
+
+
+
+
 Webhook will trigger a new job and in the "Console Output" of the job you
 will find something like this:
 SSH: Transferred 25 file(s)
 Finished: SUCCESS
 
+
+
+![successful over ssh](https://github.com/user-attachments/assets/3e37c10f-decc-4f3b-b8e4-6118391ce032)
+
+
 To make sure that the files in /mnt/apps have been udated - connect via
 SSH/Putty to your NFS server and check README.MD file
-cat /mnt/apps/README.md
+      cat /mnt/apps/README.md
+
+or 
+
+      sudo nano /mnt/apps/README.md
+
+
+![content of readme md](https://github.com/user-attachments/assets/f925676a-fd8a-44d0-956f-652e22605c5c)
 
 If you see the changes you had previously made in your GitHub - the job
 works as expected.
 
-Congratulations!
-You have just implemented your first Continous Integration solution using
-Jenkins CI. Watch out for advanced CI configurations in upcoming projects
+
+We have just implemented our first Continous Integration solution using
+Jenkins CI. 
