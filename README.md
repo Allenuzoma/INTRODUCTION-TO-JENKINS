@@ -20,18 +20,20 @@ Step 1 - Install Jenkins server
    
    
 5. Install Jenkins
+
+
 Due to the fact that Jenkins requires JDK to run will will have to install it first
 
       
-      sudo apt update
-      sudo apt install fontconfig openjdk-17-jre
-      java -version
-      openjdk version "17.0.8" 2023-07-18
-      OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
-      OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
-      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-      export PATH=$JAVA_HOME/bin:$PATH
-      source ~/.bashrc 
+        sudo apt update
+        sudo apt install fontconfig openjdk-17-jre
+        java -version
+        openjdk version "17.0.8" 2023-07-18
+        OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
+        OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
+        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+        export PATH=$JAVA_HOME/bin:$PATH
+        source ~/.bashrc 
 
 
 
