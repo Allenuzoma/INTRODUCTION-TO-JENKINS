@@ -1,6 +1,16 @@
 # INTRODUCTION-TO-JENKINS
 
 
+**Leveraging Jenkins for Automating a 3-Tier Web Application**
+
+Recently, I completed a project on deploying and configuring a load balancer for a 3-tier web application, and now I'm diving deeper into automation with Jenkins!
+
+Jenkins is a powerful automation server that streamlines the building, testing, and deployment process. For a 3-tier application, Jenkins plays a key role by automating Continuous Integration and Continuous Deployment (CI/CD) pipelines across the web, application, and database tiers. This ensures smooth integration, testing, and rollout of changes to each layer.
+
+In my previous project, I manually configured a load balancer, but with Jenkins, the entire deployment process becomes more efficient. It automates updates, reduces human error, and minimizes downtime, making the whole application more robust and scalable. 🚀
+
+
+
 Step 1 - Install Jenkins server
 1. Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and
   name it "Jenkins"
