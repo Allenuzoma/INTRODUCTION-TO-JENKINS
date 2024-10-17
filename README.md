@@ -190,7 +190,6 @@ step1
 ![archive artifacts settings png 2](https://github.com/user-attachments/assets/32aa5948-f897-448b-915f-c0d5e2fb76db)
 
 
-![build 2 status](https://github.com/user-attachments/assets/2f8fe6e5-679f-4c6e-afe0-3d670ac232f5)
 
 
 
@@ -203,6 +202,9 @@ Now, go ahead and make some change in any file in your GitHub repository
 You will see that a new build has been launched automatically (by
 webhook) and you can see its results - artifacts, saved on Jenkins server.
 
+
+![build 2 status](https://github.com/user-attachments/assets/2f8fe6e5-679f-4c6e-afe0-3d670ac232f5)
+
 You have now configured an automated Jenkins job that receives files from
 GitHub by webhook trigger (this method is considered as 'push' because the
 changes are being 'pushed' and files transfer is initiated by GitHub). 
@@ -211,10 +213,15 @@ are also other methods: trigger one job (downstreadm) from another
 (upstream), poll GitHub periodically and others.
 
 By default, the artifacts are stored on Jenkins server locally
-ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
 
 
-Step 3 - Confi gure Jenkins to copy fi les to NFS server via SSH
+
+    ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
+    
+
+  ![jenkins build archive](https://github.com/user-attachments/assets/01292d92-a4a3-4618-a3a7-b799e30b79c4)
+
+Step 3 - Configure Jenkins to copy files to NFS server via SSH
 Now we have our artifacts saved locally on Jenkins server, the next step is
 to copy them to our NFS server to /mnt/apps directory.
 
