@@ -277,6 +277,8 @@ Save this configuration and go ahead, change something in README.MD file in
 your GitHub Tooling repository.
 
 NOTE: On the NFS server, you have to create a new user for jenkins and assign appropriate ownership and permission for it to be able to access the /mnt/apps directory on NFS server.
+     
+      
       #check user
       id jenkins
       #add user 
