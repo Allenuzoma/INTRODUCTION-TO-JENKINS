@@ -61,7 +61,7 @@ Due to the fact that Jenkins requires JDK to run will will have to install it fi
           source ~/.bashrc
 
 
-We can now proceed to install Jenkins
+We can now proceed to install Jenkins, install step by step:
 
      
 
