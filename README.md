@@ -21,8 +21,10 @@ Step 1 - Install Jenkins server
 3. Install JDK (since Jenkins is a Java-based application)
 
 
-      sudo apt update
-      sudo apt install default-jdk-headless
+        sudo apt update
+        sudo apt install default-jdk-headless
+
+   
 
 ![sudo apt install jdk headless](https://github.com/user-attachments/assets/6dac7c2c-bf7a-484a-8cae-899d0e94f8e8)
 
