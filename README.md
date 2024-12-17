@@ -218,7 +218,14 @@ If so - congratulations! You have just made your very first Jenkins build!
 But this build does not produce anything and it runs only when we trigger it
 manually. Let us fix it.
 
-5. Click "Configure" your job/project and add these two configurations
+5. Go to source code management and add the github lin
+   ![image](https://github.com/user-attachments/assets/fb5fb362-fea3-47d1-980e-6c07112a67c3)
+
+  ![image](https://github.com/user-attachments/assets/2e9cf6d8-d7b1-4954-bafb-db04e9c38207)
+
+
+    
+6. Click "Configure" your job/project and add these two configurations
 Configure triggering the job from GitHub webhook:
 Configure "Post-build Actions" to archive all the files - files resulted from a
 build are called "artifacts".
@@ -243,7 +250,7 @@ step1
 Step2
 
 Now, go ahead and make some change in any file in your GitHub repository
-(e.g. README.MD file) and push the changes to the master branch.
+(e.g. README.MD file) and push the changes to the main branch.
 
 You will see that a new build has been launched automatically (by
 webhook) and you can see its results - artifacts, saved on Jenkins server.
