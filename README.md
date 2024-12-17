@@ -36,30 +36,56 @@ Step 1 - Install Jenkins server
 
 Due to the fact that Jenkins requires JDK to run will will have to install it first
 
-      
-        sudo apt update
-        sudo apt install fontconfig openjdk-17-jre
-        java -version
-        openjdk version "17.0.8" 2023-07-18
-        OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
-        OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
-        export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-        export PATH=$JAVA_HOME/bin:$PATH
-        source ~/.bashrc 
 
+
+          # Update package lists
+          sudo apt update
+          
+          # Install Java 17 JRE
+          sudo apt install openjdk-17-jre
+          
+          # Set the JAVA_HOME environment variable
+          export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+          
+          # Add the Java bin directory to the PATH
+          export PATH="$JAVA_HOME/bin:$PATH"
+          
+          # Verify the Java installation
+          java -version
+          
+          # Add the following lines to your .bashrc file:
+          export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+          export PATH="$JAVA_HOME/bin:$PATH"
+          
+          # Source the file to apply the changes immediately:
+          source ~/.bashrc
 
 
 We can now proceed to install Jenkins
 
-      wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
-      sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-      sudo apt update
-      sudo apt install jenkins
-      sudo systemctl start jenkins.service
-      #Since systemctl doesn’t display status output, we’ll use the status command to verify that Jenkins started successfully:
-      sudo systemctl status jenkins
+     
 
-   
+          sudo apt update
+          
+          sudo apt install openjdk-17-jre
+          
+          java -version
+           
+          curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+            /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+          echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+            https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+            /etc/apt/sources.list.d/jenkins.list > /dev/null
+          
+          sudo apt-get update
+          
+          sudo apt-get install jenkins
+          
+          sudo systemctl start jenkins.service
+          
+          sudo systemctl status jenkins
+
+
 
    
 7. By default Jenkins server uses TCP port 8080 - open it by creating a
