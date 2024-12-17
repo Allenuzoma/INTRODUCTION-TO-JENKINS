@@ -218,8 +218,14 @@ If so - congratulations! You have just made your very first Jenkins build!
 But this build does not produce anything and it runs only when we trigger it
 manually. Let us fix it.
 
-5. Go to source code management and add the github lin
+5. Go to source code management and add the github repository link to ensure that changes trigger builds
+
+   
    ![image](https://github.com/user-attachments/assets/fb5fb362-fea3-47d1-980e-6c07112a67c3)
+
+
+Also  adjust the branch specifier to be */main
+
 
   ![image](https://github.com/user-attachments/assets/2e9cf6d8-d7b1-4954-bafb-db04e9c38207)
 
