@@ -376,7 +376,16 @@ NOTE: On the NFS server, you have to create a new user for jenkins and assign ap
       ls -ld /mnt/apps
 
 
+      Save this configuration and go ahead, change something in README.MD file in our GitHub Tooling repository
 
+Note: Remember to give directory permissions for user ec2-user on the NFS server : Ensure the target directory on the NFS server has the correct permissions. You might need to change ownership or modify the permissions to allow the Jenkins user to write to it. 
+
+
+      sudo chown -R ec2-user:ec2-user /mnt/apps
+      sudo chmod -R 755 /mnt/apps
+
+
+N/B this code is similar to that above.
 
 
 Webhook will trigger a new job and in the "Console Output" of the job you
