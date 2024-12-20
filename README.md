@@ -303,8 +303,9 @@ menu item.
 
    This command generates two rsa keys with 4096 bit size for stronger encryption and are stored in the .ssh directory
 
-   Private key: id_rsa (This will be used in the Publish over SSH section)
-   public key: id_rsa.pub (This will be copied into the authorized key file located in the NFS server's .ssh directory)
+   Private Key: id_rsa (This will be used in the Publish over SSH section)
+   
+   Public Key: id_rsa.pub (This will be copied into the authorized key file located in the NFS server's .ssh directory)
 
   The private key can be accessed using the command:
 
@@ -314,12 +315,24 @@ menu item.
 
       cat ~/.ssh/id_rsa.pub
 
+  Next we will copy this public key to the remote server's (NFS server) ./ssh/authorized_keys file using the command:
+
+
+      ssh-copy-id -i ~/.ssh/id_rsa.pub <remote_user>@<remote_server_ip>
+
+
+  Replace the <remote_user> by "ec2-user" for RHEL linux and <remote_server_ip> by the IP address of the NFS server.
+
+  
+  Alternatively, manually copy the contents of the above command to the NFS server by entering this command on the NFS server CLI:
       
-  We will secure the private key and render it unaccessible to unauthorized users by modifying permissions on the jenkins server 
+      sudo nano ~/.ssh/authorized_keys
+      
+  We will have to secure the private key and render it unaccessible to unauthorized users by modifying permissions on the jenkins server 
       
       chmod 600 ~/.ssh/id_rsa
   
-  On main dashboard select "Manage Jenkins" and choose "Configure
+On main dashboard select "Manage Jenkins" and choose "Configure
   System" menu item.
 
 Scroll down to Publish over SSH plugin configuration section and configure
