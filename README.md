@@ -292,21 +292,45 @@ available. We will need a plugin that is called "Publish Over SSH".
 On main dashboard select "Manage Jenkins" and choose "Manage Plugins"
 menu item.
 
-On "Available" tab search for "Publish Over SSH" plugin and install it
+2. On "Available" tab search for "Publish Over SSH" plugin and install it
 
 3. Configure the job/project to copy artifacts over to NFS server.
-On main dashboard select "Manage Jenkins" and choose "Configure
-System" menu item.
+
+  First of all we have to generate our public and private key which will be crucial for the connection between Jenkins server and NFS server.
+  Extract the keys by entering the command on the Jenkins server CLI:
+
+        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+
+   This command generates two rsa keys with 4096 bit size for stronger encryption and are stored in the .ssh directory
+
+   Private key: id_rsa (This will be used in the Publish over SSH section)
+   public key: id_rsa.pub (This will be copied into the authorized key file located in the NFS server's .ssh directory)
+
+  The private key can be accessed using the command:
+
+      cat ~/.ssh/id_rsa
+
+  The public key can be accessed using the command:
+
+      cat ~/.ssh/id_rsa.pub
+
+      
+  We will secure the private key and render it unaccessible to unauthorized users by modifying permissions on the jenkins server 
+      
+      chmod 600 ~/.ssh/id_rsa
+  
+  On main dashboard select "Manage Jenkins" and choose "Configure
+  System" menu item.
 
 Scroll down to Publish over SSH plugin configuration section and configure
 it to be able to connect to your NFS server:
 
 1. Provide a private key (content of .pem file that you use to connect to
-NFS server via SSH/Putty)
+NFS server via SSH/Putty). The private key is 
 2. Arbitrary name
 3. Hostname - can be private IP address of your NFS server
-4. Username - ec2-user (since NFS server is based on EC2 with RHEL 8)
-5. Remote directory - /mnt/apps since our Web Servers use it as a mointing
+4. Username - ec2-user (since NFS server is based on EC2 with RHEL 8, would have been "ubuntu" if we were using an ubuntu ec2 server) 
+5. Remote directory - /mnt/apps since our Web Servers use it as a mounting
 point to retrieve files from the NFS server
 
 Test the configuration and make sure the connection returns Success.
