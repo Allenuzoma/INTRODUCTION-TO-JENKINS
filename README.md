@@ -35,7 +35,7 @@ Step 1 - Install Jenkins server
 5. Install Jenkins
 
 
-Due to the fact that Jenkins requires JDK to run will will have to install it first
+Due to the fact that Jenkins requires JDK to run will will have to install it first.
 
 
 
