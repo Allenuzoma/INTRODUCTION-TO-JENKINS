@@ -14,7 +14,7 @@ In my previous project, I manually configured a load balancer, but with Jenkins,
 
 Step 1 - Install Jenkins server
 1. Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and
-  name it "Jenkins"
+  name it "Jenkins".
 
 ![instance creation](https://github.com/user-attachments/assets/cc8c1d40-4a62-44a8-adb5-b6a58dd20879)
 
